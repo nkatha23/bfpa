@@ -31,9 +31,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check if user is logged in on mount
     const checkAuth = async () => {
       try {
-        // Try to fetch user info - this will work if token is set
-        const userData = await authApi.me()
-        setUser(userData)
+        // Only try to fetch user info if token exists
+        const token = auth.getToken()
+        if (token) {
+          const userData = await authApi.me()
+          setUser(userData)
+        }
       } catch {
         // Token might be invalid or expired
         auth.removeToken()

@@ -10,7 +10,7 @@ function Start-Backend {
     Push-Location "scripts\backend"
     
     # Create a new PowerShell process for the backend
-    $backendProcess = Start-Process -FilePath "python" -ArgumentList "manage.py", "runserver", "0.0.0.0:8000" -PassThru -WindowStyle Normal
+    $backendProcess = Start-Process -FilePath "python" -ArgumentList "manage.py", "runserver", "127.0.0.1:8000" -PassThru -WindowStyle Normal
     
     Pop-Location
     return $backendProcess.Id
